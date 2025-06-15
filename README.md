@@ -51,3 +51,9 @@ A simple web application that scrapes and displays the latest news headlines usi
    ```bash
    pip install feedparser fastapi uvicorn
    ```
+
+  ---
+
+  ## 👥 Authors
+
+  - **Bakwowi Junior** – [GitHub](https://github.com/Bakwowi)
