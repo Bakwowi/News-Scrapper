@@ -18,8 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       },
     });
     const data = await response.json();
-    // dialogBox.textContent = data.message;
-
+    outputToDialogBox(data.message, "success");
     try {
       const response = await fetch("http://127.0.0.1:8000/sources", {
         method: "GET",
@@ -36,9 +35,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.log(data);
     } catch (error) {
       console.error("Error fetching sources:", error);
+      outputToDialogBox("Error fetching sources", "danger");
     }
   } catch (error) {
     console.error("Error connecting to the server:", error);
+    outputToDialogBox("Error connecting to the server", "danger");
   }
 });
 
@@ -50,11 +51,14 @@ fetchNewsButton.addEventListener("click", async (e) => {
   e.preventDefault();
 
   if (selectSource.value.trim() == "") {
+    outputToDialogBox("Please select a source", "danger");
     console.error("Please select a source");
     return;
   }
 
   try {
+    outputToDialogBox("Fetching headlines.... ", "success");
+
     const response = await fetch(
       `http://127.0.0.1:8000/sources/${selectSource.value}`,
       {
@@ -69,17 +73,23 @@ fetchNewsButton.addEventListener("click", async (e) => {
     headlines = data;
 
     tableBody.innerHTML = "";
-    tableBody.innerHTML += headlines
-      .map((item) => {
-        return `<tr>
-                    <td>${item.Title}</td>
-                    <td>${item.Link}</td>
-                    <td>${item.Published}</td>
-                </tr>`;
-      })
-      .join("");
+    if (headlines.length === 0) {
+      tableBody.innerHTML = `<tr><td colspan="3">No headlines found for this source.</td></tr>`;
+    } else {
+      tableBody.innerHTML += headlines
+        .map((item) => {
+          return `<tr>
+              <td>${item.Title}</td>
+              <td>${item.Link}</td>
+              <td>${item.Published}</td>
+            </tr>`;
+        })
+        .join("");
+    }
     console.log(data);
+    outputToDialogBox(`${headlines.length} headlines have been successfully fetched`, "success");
   } catch (error) {
+    outputToDialogBox("Error fetching source headlines", "danger");
     console.error("Error fetching source headlines", error);
   }
 });
@@ -98,60 +108,83 @@ searchButton.addEventListener("click", (e) => {
 });
 
 exportCVS.addEventListener("click", (e) => {
-  if (headlines.length < 1) {
-    console.error("No headlines to export. Fetch headlines first");
-    return;
+  try {
+    if (headlines.length < 1) {
+      outputToDialogBox("No headlines to export. Fetch headlines first", "danger");
+      console.error("No headlines to export. Fetch headlines first");
+      return;
+    }
+
+    const headers = Object.keys(headlines[0]).join(",");
+    const rows = headlines.map((obj) => Object.values(obj).join(","));
+    const csvData = [headers, ...rows].join("\n");
+
+    const blob = new Blob([csvData], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "headlines.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+
+    outputToDialogBox("The headlines have been successfully exported to 'Headlines.csv'", "success");
+    console.log(
+      "The headlines have been successfully exported to 'Headlines.csv'"
+    );
+  } catch (error) {
+    outputToDialogBox("Error exporting headlines to CSV", "danger");
+    console.error("Error exporting headlines to CSV", error);
   }
-
-  const headers = Object.keys(headlines[0]).join(",");
-  const rows = headlines.map((obj) => Object.values(obj).join(","));
-  const csvData = [headers, ...rows].join("\n");
-
-  const blob = new Blob([csvData], { type: "text/csv" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "headlines.csv";
-  a.click();
-  URL.revokeObjectURL(url);
 });
 
 exportJSON.addEventListener("click", (e) => {
-  if (headlines.length < 1) {
-    console.error("No headlines to export. Fetch headlines first");
-    return;
+  try {
+    if (headlines.length < 1) {
+      outputToDialogBox("No headlines to export. Fetch headlines first", "danger");
+      console.error("No headlines to export. Fetch headlines first");
+      return;
+    }
+
+    const jsonData = JSON.stringify(headlines, null, 4);
+
+    const blob = new Blob([jsonData], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "Headlines.json";
+    a.click();
+    URL.revokeObjectURL(url);
+
+    outputToDialogBox("The headlines have been successfully exported into a JSON file", "success");
+    console.log(
+      "The headlines have been successfully exported into a JSON file"
+    );
+  } catch (error) {
+    outputToDialogBox("Error exporting headlines to JSON", "danger");
+    console.error("Error exporting headlines to JSON", error);
   }
-
-  const jsonData = JSON.stringify(headlines, null, 4);
-
-  const blob = new Blob([jsonData], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "Headlines.json";
-  a.click();
-  URL.revokeObjectURL(url);
-  console.log("The headlines have been successfully exported into a JSON file");
 });
 
 const searchNews = (query) => {
   if (query.trim() == "") {
+    outputToDialogBox("Please enter a query", "danger");
     console.error("Please enter a query");
     return;
   }
   if (headlines.length < 1) {
-    console.error("No news to search from. Search headlines first");
+    outputToDialogBox("No news to search from. Fetch headlines first", "danger");
+    console.error("No news to search from. Fetch headlines first");
     return;
   }
   let foundHeadlines = [];
-  headlines.forEach((item, index) => {
+  headlines.forEach((item) => {
     if (item.Title.toLowerCase().includes(query.toLowerCase())) {
       foundHeadlines.push(item);
     }
   });
 
+  tableBody.innerHTML = "";
   if (foundHeadlines.length > 0) {
-    tableBody.innerHTML = "";
     tableBody.innerHTML += foundHeadlines
       .map((item) => {
         return `<tr>
@@ -161,8 +194,8 @@ const searchNews = (query) => {
                     </tr>`;
       })
       .join("");
+    outputToDialogBox(`${foundHeadlines.length} headline(s) found for "${query}"`, "success");
   } else {
-    tableBody.innerHTML = "";
     tableBody.innerHTML += headlines
       .map((item) => {
         return `<tr>
@@ -172,11 +205,23 @@ const searchNews = (query) => {
                     </tr>`;
       })
       .join("");
+    outputToDialogBox(`No headlines found for "${query}". Showing all headlines.`, "danger");
     console.log("No headlines found");
   }
   return console.log("Search triggered => ", searchInput.value);
 };
 
-// let title = "The fujha;ri rfofia roioiraona knvljser;n ;arjrva;jrubefv ";
-
-// console.log(title.toLowerCase().includes("the"));
+const outputToDialogBox = (message, type) => {
+  if(type == "danger"){
+   dialogBox.textContent = message;
+      if (!dialogBox.classList.contains("danger")) {
+        dialogBox.classList.add("danger");
+      }
+  }
+  else if(type == "success"){
+    dialogBox.textContent = message;
+    if (dialogBox.classList.contains("danger")) {
+      dialogBox.classList.remove("danger");
+    }
+  }
+};
