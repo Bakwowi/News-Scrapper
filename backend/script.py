@@ -20,7 +20,9 @@ def read_root():
 @app.get("/sources")
 def read_item():
     try:
-        with open("sources.json", "r") as file:
+        import os
+        file_path = os.path.join(os.path.dirname(__file__), "sources.json")
+        with open(file_path, "r") as file:
             sources = json.load(file)
         source_names = []
         for i in sources:
