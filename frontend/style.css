@@ -10,6 +10,7 @@
     background-color: #212121;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 .container .title {
     width: 100%;
@@ -121,6 +122,17 @@
     flex: 1 1 0;
     overflow-y: auto;
 }
+.container section .display-news::-webkit-scrollbar {
+    width: 12px;
+    /* background: #a90505; */
+}
+
+.container section .display-news::-webkit-scrollbar-thumb {
+    background: #454545;
+    border-radius: 10px;
+    border: 4px solid transparent;
+    background-clip: padding-box;
+}
 .container section .display-news table{
     width: 80%;
     /* height: 100%; */
@@ -191,4 +203,11 @@
 }
 .container section .options button:hover{
     background-color: #2072d6;
+}
+.container section .dialog-box{
+    width: 100%;
+    background-color: #347ed9;
+    color: #ffffff;
+    text-align: center;
+    font-size: 1rem;
 }
