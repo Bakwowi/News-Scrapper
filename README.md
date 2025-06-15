@@ -1,50 +1,46 @@
 # 📰 NewsScraper
 
-A simple web application that scrapes and displays the latest news headlines using Python for the backend and HTML, CSS, and JavaScript for the frontend.
+A simple web application that scrapes and displays the latest news headlines using **Python** for the backend and **HTML/CSS/JavaScript** for the frontend.
 
 ---
 
 ## 📌 Features
 
-- Fetches news from multiple sources using RSS feeds
-- Python backend for scraping and serving JSON data
-- Clean, responsive frontend with vanilla HTML, CSS, and JS
-- Uses `fetch` API to load news dynamically
-- Easily customizable and extensible
+- Scrapes news from multiple sources using RSS feeds
+- Clean and responsive frontend interface
+- Dynamic loading of news via `fetch` API
+- Categorized or source-filtered headlines
+- Modular and extensible architecture
 
 ---
 
 ## 📁 Project Structure
 
-news-scraper/
-  backend/
-	app.py          # Python backend (Flask or FastAPI)
-	scraper.py      # Logic for fetching/parsing news feeds
-	sources.json    # List of RSS feed URLs
-  frontend/
-	index.html      # Main frontend page
-	styles.css      # CSS styles
-	script.js       # JavaScript to fetch/display news
-  requirements.txt  # Python dependencies
-  README.md         # Project documentation
-
+- `backend/`
+  - `app.py` – Python backend using Flask or FastAPI
+  - `scraper.py` – Logic for fetching/parsing news feeds
+  - `sources.json` – List of RSS feed URLs or site info
+- `frontend/`
+  - `index.html` – Main frontend page
+  - `styles.css` – Page styling
+  - `script.js` – JavaScript for fetching/rendering news
+- `requirements.txt` – Python dependencies
+- `README.md` – Project documentation
 
 ---
-
 
 ## 🚀 Getting Started
 
 ### ✅ Prerequisites
 
-- Python 3.7+
+- Python 3.7 or higher
 - pip (Python package manager)
-- A modern browser
+- A modern web browser
 
 ---
 
-### ⚙️ Backend Setup (Python)
+### ⚙️ Backend Setup
 
-1. **Clone the repository**
-```bash
-git clone https://github.com/yourusername/news-scraper.git
-cd news-scraper/backend
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/news-scraper.git
