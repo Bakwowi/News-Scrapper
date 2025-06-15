@@ -17,19 +17,16 @@ A simple web application that scrapes and displays the latest news headlines usi
 ## 📁 Project Structure
 
 news-scraper/
-│
-├── backend/
-│ ├── app.py # Python backend (Flask or FastAPI)
-│ ├── scraper.py # Logic for fetching/parsing news feeds
-│ └── sources.json # List of RSS feed URLs
-│
-├── frontend/
-│ ├── index.html # Main frontend page
-│ ├── styles.css # CSS styles
-│ └── script.js # JavaScript to fetch/display news
-│
-├── requirements.txt # Python dependencies
-└── README.md # Project documentation
+  backend/
+	app.py          # Python backend (Flask or FastAPI)
+	scraper.py      # Logic for fetching/parsing news feeds
+	sources.json    # List of RSS feed URLs
+  frontend/
+	index.html      # Main frontend page
+	styles.css      # CSS styles
+	script.js       # JavaScript to fetch/display news
+  requirements.txt  # Python dependencies
+  README.md         # Project documentation
 
 
 ---
