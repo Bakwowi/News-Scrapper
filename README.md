@@ -18,13 +18,14 @@ A simple web application that scrapes and displays the latest news headlines usi
 
 - `backend/`
   - `app.py` – Python backend using Flask or FastAPI
-  - `scraper.py` – Logic for fetching/parsing news feeds
-  - `sources.json` – List of RSS feed URLs or site info
+  - `script.py` – Python backend using FastAPI
+  - `sources.json` – List of RSS feed URLs
 - `frontend/`
+  - `assets/`
+    - `favicon.ico`
   - `index.html` – Main frontend page
   - `styles.css` – Page styling
   - `script.js` – JavaScript for fetching/rendering news
-- `requirements.txt` – Python dependencies
 - `README.md` – Project documentation
 
 ---
@@ -44,3 +45,10 @@ A simple web application that scrapes and displays the latest news headlines usi
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/news-scraper.git
+
+  ```
+
+2. Install backend dependencies:
+  ```bash
+  pip install feedparser fastapi uvicorn
+  ```
