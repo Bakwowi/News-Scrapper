@@ -20,6 +20,7 @@
 }
 .container .title h1 {
     color: #ffffff;
+    user-select: none;
 }
 .container section {
     flex: 1 1 0;
@@ -131,6 +132,7 @@
     background-color: #454545;
     /* border: 2px solid #bd1313; */
     /* display: block; */
+    user-select: none;
 }
 .container section .display-news table thead tr th{
     text-align: center;
@@ -159,8 +161,11 @@
     border-bottom: 1px solid #ffffff;
     background-color: #2e2e2e;
     text-align: center;
+    cursor: pointer;
 }
-
+.container section .display-news table tbody tr:hover td{
+    background-color: #5a5a5a;
+}
 .container section .options{
     width: 100%;
     background-color: #212121;
