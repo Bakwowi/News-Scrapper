@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🗞️ News Scraper & Filter Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>News Scraper 📰</h1>
+        </div>
+        <section class="news-section">
+            <div class="forms">
+            <form class="search-news">
+                <label for="news-input">Enter keywords/Topics:</label>
+                <input type="search" name="news-input" id="news-input">
+                <button type="submit">🔍 Search</button>
+            </form>
+            <form class="fetch-news">
+                <select name="select-source" id="select-source" title="select-source">
+                    <option value="" disabled selected>Select a source</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+                <button type="submit">Fetch news</button>
+            </form>
+        </div>
+        <div class="display-news">
+            <table class="news-table">
+                <thead>
+                    <tr>
+                        <th>Headline</th>
+                        <th>Source</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                </tbody>
+            </table>
+        </div>
+        <div class="options">
+            <button id="export-cvs">📤Export to CVS</button>
+            <button id="export-JSON">↗️Export to JSON</button>
+            <!-- <button id="clear-all">🧹 Clear all</button> -->
+        </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+[
+    {
+        "name": "ScienceDaily - Top Science",
+        "url": "https://www.sciencedaily.com/rss/top/science.xml"
+    },
+    {
+        "name": "National Geographic - Environment",
+        "url": "https://www.nationalgeographic.com/content/natgeo/en_us/environment.rss"
+    },
+    {
+        "name": "Wired - Science",
+        "url": "https://www.wired.com/feed/category/science/latest/rss"
+    },
+    {
+        "name": "New Scientist - News",
+        "url": "https://www.newscientist.com/feed/home/"
+    },
+    {
+        "name": "Nature - News",
+        "url": "https://www.nature.com/subjects/news/rss.xml"
+    },
+    {
+        "name": "Scientific American - Mind & Brain",
+        "url": "https://www.scientificamerican.com/rss/mind-and-brain/"
+    }
+]

@@ -1,0 +1,187 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.container{
+    width: 100vw;
+    height: 100vh;
+    background-color: #212121;
+    display: flex;
+    flex-direction: column;
+}
+.container .title {
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container .title h1 {
+    color: #ffffff;
+}
+.container section {
+    flex: 1 1 0;
+    width: 100%;
+    background-color: rgb(24, 24, 24);
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+.container section .forms{
+    background-color: #212121;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container section .forms .search-news{
+    padding: 0.5rem 0.8rem;
+    border-right: 1px solid #ffffff98;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.container section .forms .search-news input{
+    width: 15rem;
+    border-radius: 0.4rem;
+    outline: none;
+    border: 2px solid transparent;
+    background-color: #333333;
+    box-shadow: 0 0 0 1px #ffffff;
+    color: #ffffff;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    margin-left: 0.4rem;
+    transition: 0.2s;
+}
+.container section .forms .search-news input:focus{
+    border: 3px solid #347ed9;
+    box-shadow: none;
+}
+.container section .forms .search-news button{
+    border-radius: 0.4rem;
+    border: none;
+    outline: none;
+    margin-left: 0.6rem;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #347ed9;
+    font-weight: 600;
+    transition: 0.2s;
+}
+.container section .forms .search-news button:hover{
+    background-color: #2072d6;
+}
+.container section .forms .fetch-news{
+    padding: 0.5rem 0.8rem;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.container section .forms .fetch-news select{
+    width: 10rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.4rem;
+    background-color: #333333;
+    color: #ffffff;
+    box-shadow: 0 0 0 1px #ffffff;
+}
+.container section .forms .fetch-news button{
+    border-radius: 0.4rem;
+    border: 2px solid #347ed9;
+    outline: none;
+    margin-left: 0.6rem;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: transparent;
+    font-weight: 600;
+    transition: 0.2s;
+}
+.container section .forms .fetch-news button:hover{
+    border: 2px solid transparent;
+    background-color: #347ed9;
+}
+.container section .display-news{
+    width: 100%;
+    height: 40px;
+    padding: 0.8rem;
+    background-color: #212121;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
+    flex: 1 1 0;
+    overflow-y: auto;
+}
+.container section .display-news table{
+    width: 80%;
+    /* height: 100%; */
+    background-color: aqua;
+    border: 2px solid #454545;
+    border-collapse: collapse;
+    /* flex: 1 1 0; */
+}
+.container section .display-news table thead{
+    background-color: #454545;
+    /* border: 2px solid #bd1313; */
+    /* display: block; */
+}
+.container section .display-news table thead tr th{
+    text-align: center;
+    vertical-align: middle;
+    color: #ffffff;
+    border-right: 1px solid #ffffff; /* Add right border */
+    padding: 0.2rem 0.6rem;
+}
+.container section .display-news table thead tr th:nth-child(1){
+    width: 40%;
+}
+.container section .display-news table thead tr th:last-child {
+  border-right: none; /* Remove border from last header cell */
+}
+.container section .display-news table tbody{
+    /* height: 200px; */
+    background-color: #2e2e2e;
+    color: #ffffff;
+    /* vertical-align: top; */
+    /* display: block; */
+}
+.container section .display-news table tbody tr td{
+    /* height: auto; */
+    padding: 0.1rem;
+    border-left: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    background-color: #2e2e2e;
+    text-align: center;
+}
+
+.container section .options{
+    width: 100%;
+    background-color: #212121;
+    padding: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+}
+.container section .options button{
+    border-radius: 0.4rem;
+    outline: none;
+    border: none;
+    margin: 0.4rem;
+    padding: 0.4rem 0.6rem;
+    font-weight: 600;
+    background-color: #347ed9;
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.container section .options button:hover{
+    background-color: #2072d6;
+}
