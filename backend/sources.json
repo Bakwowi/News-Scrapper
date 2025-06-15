@@ -1,5 +1,9 @@
 [
     {
+        "name": "All sources",
+        "url": ""
+    },
+    {
         "name": "ScienceDaily - Top Science",
         "url": "https://www.sciencedaily.com/rss/top/science.xml"
     },

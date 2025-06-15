@@ -20,6 +20,7 @@
 }
 .container .title h1 {
     color: #ffffff;
+    -webkit-user-select: none;
     user-select: none;
 }
 .container section {
@@ -132,6 +133,7 @@
     background-color: #454545;
     /* border: 2px solid #bd1313; */
     /* display: block; */
+    -webkit-user-select: none;
     user-select: none;
 }
 .container section .display-news table thead tr th{
