@@ -45,7 +45,6 @@ A simple web application that scrapes and displays the latest news headlines usi
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/news-scraper.git
-
   ```
 
 2. Install backend dependencies:
