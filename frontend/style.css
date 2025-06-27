@@ -117,7 +117,7 @@
     width: 100%;
     height: 100%;
     padding: 0.8rem 0.8rem 0rem 0.8rem;
-    /* background-color: #a9de59; */
+    background-color: #a9de59;
     display: flex;
     /* justify-content: center; */
     flex-direction: row;
@@ -207,53 +207,54 @@
 .container section .display-news .right{
     min-width: 20rem;
     height: 100%;
-    /* background-color: #e349c2; */
+    background-color: #e349c2;
     padding: 0rem 0rem 1rem 1rem;
     display: flex;
     flex-direction: column;
     flex: 1 1 0;
 }
-.container section .display-news .right .sources{
+.container section .display-news .right .sources {
     width: 100%;
-    /* background-color: aquamarine; */
+    height: 3rem;
+    background-color: #212121;
     display: flex;
     align-items: center;
     gap: 1rem;
-    overflow: auto;
+    overflow-x: auto;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.5rem 0.5rem 0 0;
 }
-.container section .display-news .right .sources::-webkit-scrollbar{
+.container section .display-news .right .sources::-webkit-scrollbar {
     display: none;
 }
-.container section .display-news .right .sources .source{
-    padding: 0.4rem 0.6rem;
-    border-radius: 5rem;
-    font-size: 0.9rem;
-    /* font-weight: 600; */
+.container section .display-news .right .sources .source {
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
     text-transform: capitalize;
     background-color: transparent;
     border: 1px solid #ffffff1f;
     color: #ffffff;
     outline: none;
-    /* border: none; */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: 0.2s;
 }
 .container section .display-news .right .sources .source:hover{
     background-color: #333333;
 }
 .container section .display-news .right .news-cards{
-    min-width: 100%;
-    /* height: 100%; */
+    width: 100%;
     display: flex;
-    /* flex-direction: row; */
     flex-wrap: wrap;
-    flex: 1 1 0;
-    /* background-color: cadetblue; */
-    padding: 0.8rem 0rem 1rem 0rem;
-    overflow-y: auto;
     gap: 1rem;
+    padding: 0.8rem 0rem 1rem 0rem;
+    background-color: #e34949;
+    overflow-y: auto;
+    align-items: flex-start;
 }
 .container section .display-news .right .news-cards .card{
     width: 18rem;
