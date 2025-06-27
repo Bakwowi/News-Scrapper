@@ -4,6 +4,10 @@
         "url": ""
     },
     {
+        "name": "another source",
+        "url": "another test link"
+    },
+    {
         "name": "ScienceDaily - Top Science",
         "url": "https://www.sciencedaily.com/rss/top/science.xml"
     },

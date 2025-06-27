@@ -90,7 +90,7 @@ const AddSourceEventListener = () => {
   });
 };
 
-document.addEventListener("DOMContentLoaded", async () => {
+const fetchSources = async () => {
   try {
     const response = await fetch("http://127.0.0.1:8000", {
       method: "GET",
@@ -171,6 +171,31 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Error connecting to the server:", error);
     outputToDialogBox("Error connecting to the server", "danger");
   }
+}
+
+const addNewSource = async (name, url) => {
+  try {
+    const response = await fetch("http://127.0.0.1:8000/sources", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: name,
+        url: url
+      })
+    });
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    outputToDialogBox("Error adding new source");
+    console.log(error);
+  }
+}
+
+
+document.addEventListener("DOMContentLoaded", async () => {
+  fetchSources();
 });
 
 // If you want to handle pressing Enter in the input:
@@ -185,6 +210,18 @@ searchButton.addEventListener("click", (e) => {
   e.preventDefault();
   searchNews(searchInput.value);
 });
+
+addNewSourceBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const name = sourceNameInput.value.trim();
+  const url = sourceUrlInput.value.trim();
+  if (!name || !url) {
+    outputToDialogBox("Please enter both source name and URL", "danger");
+    return;
+  }
+  addNewSource(name, url);
+});
+
 
 exportCVS.addEventListener("click", (e) => {
   try {

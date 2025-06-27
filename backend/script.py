@@ -1,8 +1,12 @@
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel
 import json
 from fastapi.middleware.cors import CORSMiddleware
 import feedparser
 from threading import Thread, Lock
+import os
+
 
 app = FastAPI()
 
@@ -109,3 +113,26 @@ def fetch_data_from_source(source: str):
 
         
 
+
+class Source(BaseModel):
+    name: str
+    url: str
+
+@app.post("/sources")
+async def add_new_source(source: Source):
+    try:
+        file_path = os.path.join(os.path.dirname(__file__), "sources.json")
+        global sources
+        with open(file_path, "r") as file:
+            sources = json.load(file)
+            # Check if source already exists
+            for i in sources:
+                if source.name == i.get("name", ""):
+                    return {"message": "This source already exists"}
+        # Add new source
+        sources.insert(1, {"name": source.name, "url": source.url})
+        with open(file_path, "w") as file:
+            json.dump(sources, file, indent=4)
+        return {"message": "Source added successfully.", "source": {"name": source.name, "url": source.url}}
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"error": f"An unexpected error occurred: {str(e)}"})

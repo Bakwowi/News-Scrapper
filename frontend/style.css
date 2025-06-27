@@ -391,6 +391,19 @@
     font-weight: 600;
 }
 
+.no-news{
+    width: 100%;
+    height: 100%;
+    /* background-color: aquamarine; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-news img{
+    /* width: 100%; */
+    height: 100%;
+}
 .dialog-box {
     width: 100%;
     background: var(--accent);
