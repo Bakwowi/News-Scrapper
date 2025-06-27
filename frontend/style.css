@@ -350,6 +350,7 @@
 
 .card {
     width: 17rem;
+    /* height: 14rem; */
     padding: 0.5rem;
     background: var(--primary-bg);
     border-radius: var(--card-radius);
@@ -382,9 +383,11 @@
     margin-top: 0.5rem;
     font-size: 0.8rem;
     display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
 }
 
-.card div span:first-child {
+.card div span:last-child {
     font-weight: 600;
 }
 

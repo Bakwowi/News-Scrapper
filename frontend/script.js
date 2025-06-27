@@ -71,8 +71,8 @@ const AddSourceEventListener = () => {
                  ${item.Summary}
                 </p>
                 <div class="info">
-                  <span>${source.textContent}</span>.
-                  <span>${item.Published}</span>
+                <span>${item.Published}</span>
+                <span>${source.textContent}</span>
                 </div>
               </div>`;
             })
@@ -310,3 +310,5 @@ const searchNews = (query) => {
   }
   return console.log("Search triggered => ", searchInput.value);
 };
+
+

@@ -47,7 +47,7 @@ def fetch_all_news_sources():
 
 @app.get("/sources/{source}")
 def fetch_data_from_source(source: str):
-    if source != "All sources":
+    if source != "All Sources":
         try:
             url = ""
             for i in sources:
