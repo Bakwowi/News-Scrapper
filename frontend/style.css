@@ -42,8 +42,8 @@
 
 .container .title h1 {
     color: var(--text);
-    user-select: none;
     -webkit-user-select: none;
+    user-select: none;
 }
 
 .container section {
@@ -195,6 +195,7 @@
 .add-source label {
     font-size: 0.9rem;
     color: var(--text);
+    margin-bottom: 4px;
 }
 
 .add-source input {
@@ -290,7 +291,7 @@
     font-weight: 500;
     text-transform: capitalize;
     background: transparent;
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     color: var(--text);
     outline: none;
     display: flex;
@@ -321,15 +322,15 @@
 
 .news-cards {
     width: 100%;
+    padding: 0.5rem 0.5rem 0.2rem 0.5rem;
+    color: #ffffff;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     gap: 1rem;
     flex: 1 1 0;
-    padding: 0.5rem 0.5rem 0.2rem 0.5rem;
-    overflow-y: auto;
-    
     align-content: flex-start;
+    overflow-y: auto;
 }
 
 .news-cards::-webkit-scrollbar {
@@ -348,7 +349,7 @@
 }
 
 .card {
-    width: 18rem;
+    width: 17rem;
     padding: 0.5rem;
     background: var(--primary-bg);
     border-radius: var(--card-radius);
@@ -356,7 +357,9 @@
     color: var(--text-muted);
     display: flex;
     flex-direction: column;
+    /* flex: 1 1 17rem; */
     transition: var(--transition);
+    cursor: pointer;
 }
 
 /* .card:hover {
@@ -398,7 +401,7 @@
 }
 .autoshow{
     animation: autoshow;
-    animation-timeline: view(90% auto);
+    animation-timeline: view(130% auto);
 }
 
 @keyframes autoshow {
@@ -411,9 +414,9 @@
         transform: translateY(0) scale(1);
     }
 }
-@media (max-width: 560px) {
+/* @media (max-width: 560px) {
     .autoshow {
-        animation-timeline: view(100% auto);
+        animation-timeline: view(110% auto);
     }
     @keyframes autoshow {
     from{
@@ -455,4 +458,4 @@
             transform: translateY(0) scale(1);
         }
     }
-}
+} */
