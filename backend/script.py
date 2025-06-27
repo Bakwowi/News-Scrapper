@@ -59,8 +59,8 @@ def fetch_data_from_source(source: str):
                 return {"error": f"Source '{source}' not found or URL missing."}
 
             feed = feedparser.parse(url)
-            if feed.bozo:
-                return {"error": f"Failed to parse feed: {getattr(feed, 'bozo_exception', 'Unknown error')}"}
+            # if feed.bozo:
+            #     return {"error": f"Failed to parse feed: {getattr(feed, 'bozo_exception', 'Unknown error')}"}
 
             data = []
             for entry in feed.entries:
@@ -80,8 +80,8 @@ def fetch_data_from_source(source: str):
 
             def getData(url):
                 feed = feedparser.parse(url)
-                if feed.bozo:
-                    return
+                # if feed.bozo:
+                #     return
                 for entry in feed.entries:
                     with lock:
                         data.append({

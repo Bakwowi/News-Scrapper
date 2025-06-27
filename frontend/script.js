@@ -74,10 +74,11 @@ fetchNewsButton.addEventListener("click", async (e) => {
 
     tableBody.innerHTML = "";
     if (headlines.length === 0) {
+      console.log("there are no headlines")
       tableBody.innerHTML = `<tr><td colspan="3">No headlines found for this source.</td></tr>`;
     } else {
-      tableBody.innerHTML += headlines
-        .map((item) => {
+      console.log(headlines);
+      tableBody.innerHTML += headlines.map((item) => {
           return `<tr>
               <td>${item.Title}</td>
               <td>${item.Link}</td>

@@ -5,59 +5,222 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>News Scraper & Filter Tool</title>
     <link rel="stylesheet" href="frontend/style.css" />
-    <link rel="shortcut icon" href="frontend/assets/favicon/icons8-news-32.png" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="frontend/assets/favicon/icons8-news-32.png"
+      type="image/x-icon"
+    />
   </head>
   <body>
     <div class="container">
       <div class="title">
-        <h1>News Scraper 📰</h1>
+        <h1>
+          <img src="frontend/assets/favicon/icons8-news-32.png" alt="logo" />
+          News Scraper Pro
+        </h1>
       </div>
       <section class="news-section">
         <div class="forms">
           <form class="search-news">
             <label for="search-news-input">Enter keywords/Topics:</label>
             <input type="search" name="news-input" id="search-news-input" />
-            <button type="submit" id="search-button">🔍 Search</button>
-          </form>
-          <form class="fetch-news">
-            <select
-              name="select-source"
-              id="select-source"
-              title="select-source"
-            >
-              <option value="" disabled selected>Select a source</option>
-              <!-- <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option> -->
-            </select>
-            <button type="submit" id="fetch-news">Fetch news</button>
+            <button type="submit" id="search-button">
+              <svg
+                viewBox="0 0 24 24"
+                width="15"
+                height="15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                stroke="#ffffff"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M17.0392 15.6244C18.2714 14.084 19.0082 12.1301 19.0082 10.0041C19.0082 5.03127 14.9769 1 10.0041 1C5.03127 1 1 5.03127 1 10.0041C1 14.9769 5.03127 19.0082 10.0041 19.0082C12.1301 19.0082 14.084 18.2714 15.6244 17.0392L21.2921 22.707C21.6828 23.0977 22.3163 23.0977 22.707 22.707C23.0977 22.3163 23.0977 21.6828 22.707 21.2921L17.0392 15.6244ZM10.0041 17.0173C6.1308 17.0173 2.99087 13.8774 2.99087 10.0041C2.99087 6.1308 6.1308 2.99087 10.0041 2.99087C13.8774 2.99087 17.0173 6.1308 17.0173 10.0041C17.0173 13.8774 13.8774 17.0173 10.0041 17.0173Z"
+                    fill="#ffffff"
+                  ></path>
+                </g>
+              </svg>
+              Search
+            </button>
           </form>
         </div>
         <div class="display-news">
-          <table class="news-table">
-            <thead>
-              <tr>
-                <th>Headline</th>
-                <th>Source</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody id="table-body">
-              <!-- <tr>
-                        <td>hello world</td>
-                        <td>hello world</td>
-                        <td>hello world</td>
-                    </tr> -->
-            </tbody>
-          </table>
+          <div class="left">
+            <div class="add-source">
+              <form action="">
+                <div>
+                  <label for="source-name">Enter source name</label>
+                  <input type="text" placeholder="Example source" />
+                </div>
+                <div>
+                  <label for="source-url">Enter source URL</label>
+                  <input
+                    type="text"
+                    placeholder="https://exampleurl.com/rss/feed"
+                  />
+                </div>
+                <button type="submit">
+                  <svg
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="#ffffff"
+                    stroke="#ffffff"
+                    width="20"
+                    height="20"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <title></title>
+                      <g id="Complete">
+                        <g data-name="add" id="add-2">
+                          <g>
+                            <line
+                              fill="none"
+                              stroke="#ffffff"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              x1="12"
+                              x2="12"
+                              y1="19"
+                              y2="5"
+                            ></line>
+                            <line
+                              fill="none"
+                              stroke="#ffffff"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              x1="5"
+                              x2="19"
+                              y1="12"
+                              y2="12"
+                            ></line>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                  Add source
+                </button>
+              </form>
+            </div>
+            <div class="options">
+              <button id="export-cvs">📤Export to CVS</button>
+              <button id="export-JSON">↗️Export to JSON</button>
+              <!-- <button id="clear-all">🧹 Clear all</button> -->
+            </div>
+          </div>
+          <div class="right">
+            <div class="sources">
+              <button class="source">sourcedfd df</button>
+              <button class="source">soerurce</button>
+              <button class="source">sourrevce</button>
+              <button class="source">sourfvwrvce</button>
+              <button class="source">sourererfrfce</button>
+              <button class="source">sourerce</button>
+            </div>
+            <div class="news-cards">
+              <div class="card">
+                <h1>
+                  Headline. The headline can be a very long one, so in such a
+                  case, what will you do
+                </h1>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Temporibus, id optio. Illo suscipit iure nesciunt enim atque
+                  ea inventore voluptatum, optio, nulla accusamus iusto, aut
+                  alias delectus vel! Voluptatibus, aliquid.
+                </p>
+                <div class="info">
+                  <span>source</span>.
+                  <span>date</span>
+                </div>
+              </div>
+              <div class="card">
+                <h1>
+                  Headline. The headline can be a very long one, so in such a
+                  case, what will you do
+                </h1>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Temporibus, id optio. Illo suscipit iure nesciunt enim atque
+                  ea inventore voluptatum, optio, nulla accusamus iusto, aut
+                  alias delectus vel! Voluptatibus, aliquid.
+                </p>
+                <div class="info">
+                  <span>source</span>.
+                  <span>date</span>
+                </div>
+              </div>
+              <div class="card">
+                <h1>
+                  Headline. The headline can be a very long one, so in such a
+                  case, what will you do
+                </h1>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Temporibus, id optio. Illo suscipit iure nesciunt enim atque
+                  ea inventore voluptatum, optio, nulla accusamus iusto, aut
+                  alias delectus vel! Voluptatibus, aliquid.
+                </p>
+                <div class="info">
+                  <span>source</span>.
+                  <span>date</span>
+                </div>
+              </div>
+              <div class="card">
+                <h1>
+                  Headline. The headline can be a very long one, so in such a
+                  case, what will you do
+                </h1>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Temporibus, id optio. Illo suscipit iure nesciunt enim atque
+                  ea inventore voluptatum, optio, nulla accusamus iusto, aut
+                  alias delectus vel! Voluptatibus, aliquid.
+                </p>
+                <div class="info">
+                  <span>source</span>.
+                  <span>date</span>
+                </div>
+              </div>
+              <div class="card">
+                <h1>
+                  Headline. The headline can be a very long one, so in such a
+                  case, what will you do
+                </h1>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Temporibus, id optio. Illo suscipit iure nesciunt enim atque
+                  ea inventore voluptatum, optio, nulla accusamus iusto, aut
+                  alias delectus vel! Voluptatibus, aliquid.
+                </p>
+                <div class="info">
+                  <span>source</span>.
+                  <span>date</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="options">
-          <button id="export-cvs">📤Export to CVS</button>
-          <button id="export-JSON">↗️Export to JSON</button>
-          <!-- <button id="clear-all">🧹 Clear all</button> -->
+
+        <div class="dialog-box" id="dialog-box">
+          Notifications will appear here
         </div>
-        <div class="dialog-box" id="dialog-box">Notifications will appear here</div>
       </section>
     </div>
 
