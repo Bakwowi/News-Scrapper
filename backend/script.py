@@ -48,6 +48,10 @@ def fetch_all_news_sources():
         return {"error": f"An unexpected error occurred: {str(e)}"}
 
 
+def getSourceName(link):
+    for i in sources:
+        if link == i["url"]:
+            return i["name"]
 
 @app.get("/sources/{source}")
 def fetch_data_from_source(source: str):
@@ -70,7 +74,7 @@ def fetch_data_from_source(source: str):
             for entry in feed.entries:
                 data.append({
                     "Title": getattr(entry, "title", "No title"),
-                    "Link": getattr(entry, "link", "No link"),
+                    "Link": getSourceName(url),
                     "Published": entry.get('published', 'N/A') if hasattr(entry, 'get') else getattr(entry, "published", "N/A"),
                     "Summary": entry.get('summary', 'No summary') if hasattr(entry, 'get') else getattr(entry, "summary", "No summary")
                 })
@@ -90,7 +94,7 @@ def fetch_data_from_source(source: str):
                     with lock:
                         data.append({
                             "Title": getattr(entry, "title", "No title"),
-                            "Link": getattr(entry, "link", "No link"),
+                            "Link": getSourceName(url),
                             "Published": entry.get('published', 'N/A') if hasattr(entry, 'get') else getattr(entry, "published", "N/A"),
                             "Summary": entry.get('summary', 'No summary') if hasattr(entry, 'get') else getattr(entry, "summary", "No summary")
                         })
@@ -123,16 +127,28 @@ async def add_new_source(source: Source):
     try:
         file_path = os.path.join(os.path.dirname(__file__), "sources.json")
         global sources
-        with open(file_path, "r") as file:
-            sources = json.load(file)
-            # Check if source already exists
-            for i in sources:
-                if source.name == i.get("name", ""):
-                    return {"message": "This source already exists"}
+        for i in sources:
+            if source.name == i.get("name", ""):
+                return {"message": "This source already exists"}
         # Add new source
         sources.insert(1, {"name": source.name, "url": source.url})
         with open(file_path, "w") as file:
             json.dump(sources, file, indent=4)
         return {"message": "Source added successfully.", "source": {"name": source.name, "url": source.url}}
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"error": f"An unexpected error occurred: {str(e)}"})
+
+
+@app.delete("/sources/{source_name}")
+def delete_source(source_name: str):
+    global sources, source_names
+    # Find and remove the source by name
+    sources = [s for s in sources if s.get("name", "") != source_name]
+    source_names = [name for name in source_names if name != source_name]
+    file_path = os.path.join(os.path.dirname(__file__), "sources.json")
+    try:
+        with open(file_path, "w") as file:
+            json.dump(sources, file, indent=4)
+        return {"message": f"Source '{source_name}' deleted successfully.", "sources": source_names}
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": f"An unexpected error occurred: {str(e)}"})

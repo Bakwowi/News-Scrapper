@@ -13,6 +13,8 @@ const exportJSON = document.getElementById("export-JSON");
 
 const dialogBox = document.getElementById("dialog-box");
 
+const noNewsDiv = document.querySelector(".no-news");
+
 let headlines = [];
 
 const outputToDialogBox = (message, type) => {
@@ -56,7 +58,7 @@ const AddSourceEventListener = () => {
         cardsContainer.innerHTML = "";
         if (headlines.length === 0) {
           console.log("there are no headlines");
-          cardsContainer.innerHTML = "No headlines found for this source.";
+          cardsContainer.innerHTML = `<div class="no-news" style="display: flex"><img src="frontend/assets/No data-rafiki.png" alt="No data"></div>`;
           // outputToDialogBox("")
         } else {
           // console.log(headlines);
@@ -72,7 +74,7 @@ const AddSourceEventListener = () => {
                 </p>
                 <div class="info">
                 <span>${item.Published}</span>
-                <span>${source.textContent}</span>
+                <span>${item.Link}</span>
                 </div>
               </div>`;
             })
@@ -163,6 +165,9 @@ const fetchSources = async () => {
                   Add source</button>`;
       console.log(data);
       AddSourceEventListener();
+      // deleteSource("Another source")
+      noNewsDiv.style.display = "flex";
+      noNewsDiv.innerHTML = `<h1 style="text-align: center">Welcome to News Scraper Pro. Start by searching for news or adding your favorite sources!</h1>`
     } catch (error) {
       console.error("Error fetching sources:", error);
       outputToDialogBox("Error fetching sources", "danger");
@@ -313,16 +318,23 @@ const searchNews = (query) => {
       foundHeadlines.push(item);
     }
   });
-
-  tableBody.innerHTML = "";
+  const cardsContainer = document.querySelector(".news-cards");
+  cardsContainer.innerHTML = "";
   if (foundHeadlines.length > 0) {
-    tableBody.innerHTML += foundHeadlines
+    cardsContainer.innerHTML += foundHeadlines
       .map((item) => {
-        return `<tr>
-                        <td>${item.Title}</td>
-                        <td>${item.Link}</td>
-                        <td>${item.Published}</td>
-                    </tr>`;
+        return `<div class="card autoshow">
+                <h1>
+                  ${item.Title}
+                </h1>
+                <p>
+                 ${item.Summary}
+                </p>
+                <div class="info">
+                <span>${item.Published}</span>
+                <span>${item.Link}</span>
+                </div>
+              </div>`;
       })
       .join("");
     outputToDialogBox(
@@ -330,13 +342,20 @@ const searchNews = (query) => {
       "success"
     );
   } else {
-    tableBody.innerHTML += headlines
+    cardsContainer.innerHTML += headlines
       .map((item) => {
-        return `<tr>
-                        <td>${item.Title}</td>
-                        <td>${item.Link}</td>
-                        <td>${item.Published}</td>
-                    </tr>`;
+        return `<div class="card autoshow">
+                <h1>
+                  ${item.Title}
+                </h1>
+                <p>
+                 ${item.Summary}
+                </p>
+                <div class="info">
+                <span>${item.Published}</span>
+                <span>${item.Link}</span>
+                </div>
+              </div>`;
       })
       .join("");
     outputToDialogBox(
@@ -348,4 +367,18 @@ const searchNews = (query) => {
   return console.log("Search triggered => ", searchInput.value);
 };
 
-
+const deleteSource = async (sourceName) => {
+  try {
+    const response = await fetch(`http://127.0.0.1:8000/sources/${sourceName}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    const data = await response.json();
+    return console.log(data);
+  } catch (error) {
+    outputToDialogBox("Error deleting source", "danger");
+    console.error("Error deleting source", error);
+  }
+};
